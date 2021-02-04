@@ -145,7 +145,7 @@ platforms = pygame.sprite.Group()
 
 rate = 1
 
-pygame.time.set_timer(100, 1000)
+pygame.time.set_timer(100, 250)
 
 while True:
     P1.update()
@@ -154,6 +154,9 @@ while True:
             pygame.quit()
             sys.exit()
         if event.type == 100:
+            pl = platform(random.randrange(0, WIDTH), 50)
+            platforms.add(pl)
+            all_sprites.add(pl)
             pl = platform(random.randrange(0, WIDTH), 50)
             platforms.add(pl)
             all_sprites.add(pl)
