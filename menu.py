@@ -45,15 +45,11 @@ def main_menu():
     menu=True
     selected="start"
 
-<<<<<<< HEAD
-
-=======
     moon = pygame.sprite.Sprite
 
     moon.surf = pygame.image.load("pics/moon_PNG36.png").convert_alpha()
     moon.surf = pygame.transform.scale(moon.surf, (20, 20))
     moon.rect = moon.surf.get_rect()
->>>>>>> ece574569da5cbc4352f458c345a8689f847fc6d
 
     while menu:
         for event in pygame.event.get():
@@ -74,7 +70,6 @@ def main_menu():
                         quit()
 
         # Main Menu UI
-<<<<<<< HEAD
 
         bg = pygame.image.load("pics/bg.jpg").convert()
         bg = pygame.transform.scale(bg, (screen_width, screen_height))
@@ -82,10 +77,6 @@ def main_menu():
 
 
         screen.blit(bg, (0,0))
-=======
-        bg = pygame.image.load("pics/bg.jpg").convert()
-        bg = pygame.transform.scale(bg, (screen_width, screen_height))
->>>>>>> ece574569da5cbc4352f458c345a8689f847fc6d
         title=text_format("Space Race", font, 90, yellow)
         if selected=="start":
             text_start=text_format("START", font, 75, white)
@@ -105,10 +96,7 @@ def main_menu():
         screen.blit(text_start, (screen_width/2 - (start_rect[2]/2), 300))
         screen.blit(text_quit, (screen_width/2 - (quit_rect[2]/2), 360))
 
-<<<<<<< HEAD
-=======
         screen.blit(moon.surf, (screen_width/2 - (title_rect[2]/2), 80))
->>>>>>> ece574569da5cbc4352f458c345a8689f847fc6d
 
         pygame.display.update()
         clock.tick(FPS)
