@@ -7,10 +7,13 @@ pygame.init()
 vec = pygame.math.Vector2 #2 for two dimensional
 
 HEIGHT = 450
-WIDTH = 400
+WIDTH = 1000
 ACC = 0.5
-FRIC = -0.12
+FRIC = -0.02
 FPS = 60
+
+MAX_RATE = 50
+GROWTH_RATE = .002
 
 FramePerSec = pygame.time.Clock()
 
@@ -20,9 +23,8 @@ pygame.display.set_caption("Game")
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
-        #self.image = pygame.image.load("character.png")
-        self.surf = pygame.Surface((30, 30))
-        self.surf.fill((255,255,0))
+        self.surf = pygame.image.load("pics/US.png").convert_alpha()
+        self.surf = pygame.transform.scale(self.surf, (64, 64))
         self.rect = self.surf.get_rect()
 
         self.pos = vec((10, 360))
@@ -64,8 +66,8 @@ class Player(pygame.sprite.Sprite):
 class platform(pygame.sprite.Sprite):
     def __init__(self, x, y):
         super().__init__()
-        self.surf = pygame.Surface((random.randint(50,100), 12))
-        self.surf.fill((0,255,0))
+        self.surf = pygame.image.load("pics/rock.png").convert_alpha()
+        self.surf = pygame.transform.scale(self.surf, (64, 64))
         self.rect = self.surf.get_rect(center = (x, y))
 
     def move(self):
@@ -90,10 +92,9 @@ all_sprites.add(P1)
 
 platforms = pygame.sprite.Group()
 
-pl = platform(50, 50)
-platforms.add(pl)
-all_sprites.add(pl)
 
+
+rate = 1
 
 while True:
     P1.update()
@@ -102,10 +103,18 @@ while True:
             pygame.quit()
             sys.exit()
 
+        if rate < MAX_RATE:
+            rate += rate * GROWTH_RATE
+
     for plat in platforms:
-        plat.rect.y += 1
+        plat.rect.y += rate
 
     displaysurface.fill((0,0,0))
+
+    if (pygame.time.get_ticks() % 120) == 0:
+        pl = platform(random.randrange(0, WIDTH), 50)
+        platforms.add(pl)
+        all_sprites.add(pl)
 
     for entity in all_sprites:
         displaysurface.blit(entity.surf, entity.rect)
