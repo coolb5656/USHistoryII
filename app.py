@@ -101,7 +101,7 @@ class Player2(pygame.sprite.Sprite):
         self.rect.midbottom = self.pos
 
     def update(self):
-        hits = pygame.sprite.spritecollide(self ,platforms, False)
+        hits = pygame.sprite.spritecollide(self, platforms, False)
         if self.vel.y > 0:
             if hits:
                 if self.pos.y < hits[0].rect.bottom:
@@ -143,10 +143,6 @@ all_sprites.add(P2)
 platforms = pygame.sprite.Group()
 
 def main():
-
-
-
-
     rate = 1
 
     pygame.time.set_timer(100, 250)
@@ -168,11 +164,13 @@ def main():
             if rate < MAX_RATE:
                 rate += rate * GROWTH_RATE
 
+        P1.update()
+
         for plat in platforms:
             plat.rect.y += rate
+            print(check(plat, (P1, P2)))
 
         displaysurface.blit(bg, (0,0))
-
         for entity in all_sprites:
             displaysurface.blit(entity.surf, entity.rect)
             entity.move()
