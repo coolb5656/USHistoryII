@@ -32,7 +32,7 @@ blue=(0, 0, 255)
 yellow=(255, 255, 0)
 
 # Game Fonts
-font = "arial"
+font = "pacifico"
 
 
 # Game Framerate
@@ -65,7 +65,7 @@ def main_menu():
 
         # Main Menu UI
         screen.fill(blue)
-        title=text_format("Sourcecodester", font, 90, yellow)
+        title=text_format("Space Race", font, 90, yellow)
         if selected=="start":
             text_start=text_format("START", font, 75, white)
         else:
