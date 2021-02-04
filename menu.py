@@ -9,8 +9,8 @@ pygame.init()
 os.environ['SDL_VIDEO_CENTERED'] = '1'
 
 # Game Resolution
-screen_width=800
-screen_height=600
+screen_width=1920
+screen_height=1080
 screen=pygame.display.set_mode((screen_width, screen_height))
 
 # Text Renderer
@@ -31,7 +31,7 @@ blue=(0, 0, 255)
 yellow=(255, 255, 0)
 
 # Game Fonts
-font = "arial"
+font = "pacifico"
 
 
 # Game Framerate
@@ -63,7 +63,7 @@ def main_menu():
 
         # Main Menu UI
         screen.fill(blue)
-        title=text_format("Sourcecodester", font, 90, yellow)
+        title=text_format("Space Race", font, 90, yellow)
         if selected=="start":
             text_start=text_format("START", font, 75, white)
         else:
