@@ -2,6 +2,7 @@ import pygame
 from pygame.locals import *
 import os
 
+from app import main
     # Game Initialization
 pygame.init()
 
@@ -9,8 +10,8 @@ pygame.init()
 os.environ['SDL_VIDEO_CENTERED'] = '1'
 
 # Game Resolution
-screen_width=800
-screen_height=600
+screen_width=1920
+screen_height=1080
 screen=pygame.display.set_mode((screen_width, screen_height))
 
 # Text Renderer
@@ -38,7 +39,7 @@ font = "arial"
 clock = pygame.time.Clock()
 FPS=60
 
-    # Main Menu
+# Main Menu
 def main_menu():
 
     menu=True
@@ -56,7 +57,8 @@ def main_menu():
                     selected="quit"
                 if event.key==pygame.K_RETURN:
                     if selected=="start":
-                        os.system("python app.py")
+                        main()
+                        pygame.quit()
                     if selected=="quit":
                         pygame.quit()
                         quit()
@@ -83,7 +85,7 @@ def main_menu():
         screen.blit(text_quit, (screen_width/2 - (quit_rect[2]/2), 360))
         pygame.display.update()
         clock.tick(FPS)
-        pygame.display.set_caption("Python - Pygame Simple Main Menu Selection")
+        pygame.display.set_caption("Space Race to Moon!")
 
 #Initialize the Game
 main_menu()

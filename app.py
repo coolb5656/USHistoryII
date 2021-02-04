@@ -59,7 +59,7 @@ class Player(pygame.sprite.Sprite):
         self.rect.midbottom = self.pos
 
     def update(self):
-        hits = pygame.sprite.spritecollide(self ,platforms, False)
+        hits = pygame.sprite.spritecollide(self, platforms, False)
         if self.vel.y > 0:
             if hits:
                 if self.pos.y < hits[0].rect.bottom:
@@ -132,6 +132,7 @@ def check(platform, groupies):
                 return True
         C = False
 
+
 P1 = Player()
 P2 = Player2()
 
@@ -141,37 +142,40 @@ all_sprites.add(P2)
 
 platforms = pygame.sprite.Group()
 
+def main():
 
 
-rate = 1
 
-pygame.time.set_timer(100, 250)
 
-while True:
-    P1.update()
-    for event in pygame.event.get():
-        if event.type == QUIT:
-            pygame.quit()
-            sys.exit()
-        if event.type == 100:
-            pl = platform(random.randrange(0, WIDTH), 50)
-            platforms.add(pl)
-            all_sprites.add(pl)
-            pl = platform(random.randrange(0, WIDTH), 50)
-            platforms.add(pl)
-            all_sprites.add(pl)
+    rate = 1
 
-        if rate < MAX_RATE:
-            rate += rate * GROWTH_RATE
+    pygame.time.set_timer(100, 250)
 
-    for plat in platforms:
-        plat.rect.y += rate
+    while True:
+        P1.update()
+        for event in pygame.event.get():
+            if event.type == QUIT:
+                pygame.quit()
+                sys.exit()
+            if event.type == 100:
+                pl = platform(random.randrange(0, WIDTH), 50)
+                platforms.add(pl)
+                all_sprites.add(pl)
+                pl = platform(random.randrange(0, WIDTH), 50)
+                platforms.add(pl)
+                all_sprites.add(pl)
 
-    displaysurface.blit(bg, (0,0))
+            if rate < MAX_RATE:
+                rate += rate * GROWTH_RATE
 
-    for entity in all_sprites:
-        displaysurface.blit(entity.surf, entity.rect)
-        entity.move()
+        for plat in platforms:
+            plat.rect.y += rate
 
-    pygame.display.update()
-    FramePerSec.tick(FPS)
+        displaysurface.blit(bg, (0,0))
+
+        for entity in all_sprites:
+            displaysurface.blit(entity.surf, entity.rect)
+            entity.move()
+
+        pygame.display.update()
+        FramePerSec.tick(FPS)
