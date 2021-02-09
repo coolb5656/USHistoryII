@@ -151,7 +151,6 @@ def start():
 
         pygame.display.update()
         FramePerSec.tick(FPS)
-        pygame.display.set_caption("Space Race to Moon!")
 
 # starting the game
 def main():
@@ -279,6 +278,5 @@ def game_over():
 
         pygame.display.update()
         FramePerSec.tick(FPS)
-        pygame.display.set_caption("Space Race to Moon!")
 
 start()
