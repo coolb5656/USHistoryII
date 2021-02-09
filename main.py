@@ -203,7 +203,8 @@ def main():
         for bern in bernies:
             bern.rect.y += rate * .7
             if(pygame.sprite.collide_rect(bern, P1)):
-                if(question("What is 2+2?", "4")):
+                q = load_question()
+                if(question(q[0], q[1])):
                     P1.score += 100
                 bern.kill()
             if(bern.rect.y > HEIGHT - 100):
