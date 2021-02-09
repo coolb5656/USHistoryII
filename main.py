@@ -278,7 +278,7 @@ def game_over():
 
         pygame.display.update()
         FramePerSec.tick(FPS)
-
+        
 # question
 def question(q, answer):
     question=True
