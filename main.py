@@ -116,7 +116,6 @@ def start():
                     if selected=="start":
                         menu = False
                         main()
-
                     if selected=="quit":
                         pygame.quit()
                         quit()
@@ -204,7 +203,9 @@ def main():
         for bern in bernies:
             bern.rect.y += rate * .7
             if(pygame.sprite.collide_rect(bern, P1)):
-                P1.score += 100
+                q = load_question()
+                if(question(q[0], q[1])):
+                    P1.score += 100
                 bern.kill()
             if(bern.rect.y > HEIGHT - 100):
                 bern.kill()
@@ -227,6 +228,7 @@ def main():
         pygame.display.update()
         FramePerSec.tick(FPS)
 
+# game over screen
 def game_over():
     menu=True
     selected="start"
@@ -250,7 +252,6 @@ def game_over():
                         pygame.quit()
                         quit()
 
-        # Main Menu UI
         bg = pygame.image.load("pics/bg.jpg").convert()
         bg = pygame.transform.scale(bg, (WIDTH, HEIGHT))
 
@@ -271,10 +272,57 @@ def game_over():
         start_rect=text_start.get_rect()
         quit_rect=text_quit.get_rect()
 
-        # Main Menu Text
         displaysurface.blit(title, (WIDTH/2 - (title_rect[2]/2), 80))
         displaysurface.blit(text_start, (WIDTH/2 - (start_rect[2]/2), 300))
         displaysurface.blit(text_quit, (WIDTH/2 - (quit_rect[2]/2), 360))
+
+        pygame.display.update()
+        FramePerSec.tick(FPS)
+        
+# question
+def question(q, answer):
+    question=True
+
+    text = ''
+
+    font = pygame.font.SysFont(FONT, 48)
+    text_box = font.render(text, True, RED)
+    text_box_rect = text_box.get_rect()
+
+    while question:
+        for event in pygame.event.get():
+            if event.type==pygame.QUIT:
+                pygame.quit()
+                quit()
+            if event.type == KEYDOWN:
+                if event.key == K_BACKSPACE:
+                    if len(text)>0:
+                        text = text[:-1]
+                elif event.key == K_RETURN:
+                    question = False
+                    return text == answer
+                else:
+                    text += event.unicode
+                text_box = font.render(text, True, RED)
+                text_box_rect.size=text_box.get_size()
+
+
+        # Main Menu UI
+        bg = pygame.image.load("pics/bg.jpg").convert()
+        bg = pygame.transform.scale(bg, (WIDTH, HEIGHT))
+
+
+
+        displaysurface.blit(bg, (0,0))
+        title=text_format(q, FONT, 90, YELLOW)
+        title_rect=title.get_rect()
+
+
+
+        # Main Menu Text
+        displaysurface.blit(title, (WIDTH/2 - (title_rect[2]/2), 80))
+        displaysurface.blit(text_box, (WIDTH/2 - (title_rect[2]/2), 250))
+
 
         pygame.display.update()
         FramePerSec.tick(FPS)

@@ -9,3 +9,12 @@ def text_format(message, textFont, textSize, textColor):
     newText=newFont.render(message, 0, textColor)
 
     return newText
+
+def load_question():
+    f = open("questions.txt", "r")
+    questions = []
+    for x in f:
+        z = x.strip()
+        y = z.split(", ")
+        questions.append(y)
+    return questions[random.randrange(0, len(questions))]
