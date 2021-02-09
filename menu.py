@@ -10,8 +10,8 @@ pygame.init()
 os.environ['SDL_VIDEO_CENTERED'] = '1'
 
 # Game Resolution
-screen_width=1920
-screen_height=1080
+screen_width=int(1920/2)
+screen_height=int(1080/2)
 screen=pygame.display.set_mode((screen_width, screen_height))
 
 # Text Renderer
@@ -48,7 +48,7 @@ def main_menu():
     moon = pygame.sprite.Sprite
 
     moon.surf = pygame.image.load("pics/moon_PNG36.png").convert_alpha()
-    moon.surf = pygame.transform.scale(moon.surf, (20, 20))
+    moon.surf = pygame.transform.scale(moon.surf, (100, 100))
     moon.rect = moon.surf.get_rect()
 
     while menu:
