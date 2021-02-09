@@ -64,7 +64,7 @@ def main_menu():
                 if event.key==pygame.K_RETURN:
                     if selected=="start":
                         main()
-                        pygame.quit()
+
                     if selected=="quit":
                         pygame.quit()
                         quit()
